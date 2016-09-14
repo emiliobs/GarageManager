@@ -7,7 +7,7 @@ namespace GarageManager.Models
 {
     public class ProductModel
     {
-        private GarageEntities db = new GarageEntities();
+        private  GarageEntities db = new GarageEntities();
 
         public string InsertProduct(Product product)
         {
