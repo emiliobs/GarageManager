@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 namespace GarageManager.Pages
 {
@@ -48,6 +49,21 @@ namespace GarageManager.Pages
         {
             if (!string.IsNullOrWhiteSpace(Request.QueryString["id"]))
             {
+
+
+                //string clientId = Context.User.Identity.GetUserId();
+
+                //if (clientId != null)
+                //{
+                //    //ingresar todo lo de Baja
+                //}
+                //else
+                //{
+                //    lblResult.Text = "Please Log In to order items.";
+                //}
+
+                //Esto lo pongo en el if
+
                 string clientId = "-1";
                 int id = Convert.ToInt32(Request.QueryString["id"]);
                 int amount = Convert.ToInt32(ddlAmount.SelectedValue);

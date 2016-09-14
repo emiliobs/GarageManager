@@ -30,6 +30,15 @@
                         <li><asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Pages/About.aspx">About Us</asp:HyperLink></li>
                         <li><asp:HyperLink ID="HyperLink3" runat="server">Reports</asp:HyperLink></li>
                         <li><asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/Pages/Management/Management.aspx">Management</asp:HyperLink></li>
+                        <li style="float: right;">
+
+                            <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="~/Pages/Account/Register.aspx">Register</asp:HyperLink>
+                            <asp:HyperLink ID="litStatus" runat="server"></asp:HyperLink>
+                        </li>
+                        <li style="float: right;">
+                         <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Pages/Account/Login.aspx">Login</asp:HyperLink>
+                         <asp:LinkButton ID="lnkLogOut" runat="server" OnClick="lnkLogOut_Click">Log Out</asp:LinkButton>
+                        </li>
 
                     </ul>
                 </div>
