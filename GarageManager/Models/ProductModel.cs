@@ -79,7 +79,7 @@ namespace GarageManager.Models
         }
 
 
-        public Product GetProduct(int? id)
+        public Product GetProduct(int id)
         {
 
             try

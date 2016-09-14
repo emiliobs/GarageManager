@@ -36,7 +36,7 @@ namespace GarageManager
                     //Set xhildrenControl`s properties:
                     imagenButton.ImageUrl = "~/Images/Products/" + product.Image;
                     imagenButton.CssClass = "productImage";
-                    imagenButton.PostBackUrl = "~/Pages/Product.aspx?id=" + product.Id;
+                    imagenButton.PostBackUrl = "~/Pages/Products.aspx?id=" + product.Id;
 
                     lblName.Text = product.Name;
                     lblName.CssClass = "productName";
