@@ -17,7 +17,33 @@ namespace GarageManager.Pages.Management
             if (!IsPostBack)
             {
                 GetImages();
+
+                //Check if the URl contains an id parameter:
+                if (!string.IsNullOrWhiteSpace(Request.QueryString["id"]))
+                {
+                    int id = Convert.ToInt32(Request.QueryString["id"]);
+
+                    FillPage(id);
+                }
+
             }
+        }
+
+        public void FillPage(int id)
+        {
+                 //Get selected products fron DB
+            ProductModel pm = new ProductModel();
+
+            Product product = pm.GetProduct(id);
+
+            //Fill Texboxes:
+            txtDescription.Text = product.Description;
+            txtName.Text = product.Name;
+            txtPrice.Text = product.Price.ToString();
+
+            //Set dropdownlist values:
+            ddImage.SelectedValue = product.Image;
+            ddType.SelectedValue = product.TypeId.ToString();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -26,7 +52,20 @@ namespace GarageManager.Pages.Management
 
             Product product = this.CreateProduct();
 
-            lblMessage.Text = productModel.InsertProduct(product);
+            //Check if the url contains an id parameter:
+            if (!string.IsNullOrWhiteSpace(Request.QueryString["id"]))
+            {
+                //Is exists -> Update exists now
+                int id = Convert.ToInt32(Request.QueryString["id"]);
+                lblMessage.Text = productModel.UpdateProduct(id, product);
+            }
+            else
+            {
+              //ID does not exists -> Create a new row:
+                lblMessage.Text = productModel.InsertProduct(product);
+            }
+
+
         }
 
 

@@ -79,7 +79,51 @@ namespace GarageManager.Models
         }
 
 
+        public Product GetProduct(int? id)
+        {
 
+            try
+            {
+                var product = db.Products.Find(id);
+
+                return product;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        public List<Product> GetAllProduct()
+        {
+            try
+            {
+                var products = db.Products.OrderBy(p => p.Name).ToList();
+
+                return products;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        public List<Product> GetAllProductByType(int? typeId)
+        {
+            try
+            {
+                var products = db.Products.Where(p => p.TypeId == typeId).OrderBy(p=>p.Name).ToList();
+
+                return products;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
 
     }
 }

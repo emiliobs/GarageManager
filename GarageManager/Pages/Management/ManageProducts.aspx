@@ -31,7 +31,7 @@
     </asp:DropDownList>
 </p>
 <p>
-    <asp:Button ID="btnSubmit" runat="server" Text="Submit." OnClick="btnSubmit_Click" />
+    <asp:Button ID="btnSubmit" CssClass="btn btn-success" runat="server" Text="Submit." OnClick="btnSubmit_Click" />
 </p>
 <p>
     <asp:Label ID="lblMessage" runat="server"></asp:Label>
