@@ -7,7 +7,7 @@ namespace GarageManager.Models
 {
     public class CartModel
     {
-         private GarageEntities db = new GarageEntities();
+        private GarageEntities db = new GarageEntities();
 
         public string InsertCart(Cart cart)
         {
@@ -78,5 +78,73 @@ namespace GarageManager.Models
                 return "Error: " + ex.Message;
             }
         }
+
+        public List<Cart> GetOrdersInCArt(string userId)
+        {
+            var orders = db.Carts.Where(c => c.ClienteId == userId && c.IsInCart).OrderBy(c => c.DatePurchased).ToList();
+
+            return orders;
+        }
+
+        public int GetAmountOfOrders(string userId)
+        {
+            try
+            {
+                var amount = db.Carts.Where(c => c.ClienteId == userId && c.IsInCart).Select(c => c.Amount).Sum();
+
+                return amount;
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+        }
+
+        public void UpdateQuantity(int id, int quantity)
+        {
+            var cart = db.Carts.Find(id);
+            cart.Amount = quantity;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void MarkOrdersAsPaid(List<Cart> carts)
+         {
+
+             if (carts != null)
+             {
+                 foreach (var cart in carts)
+                 {
+                     var oldCart = db.Carts.Find(cart.Id);
+                     oldCart.DatePurchased = DateTime.Now;
+                     oldCart.IsInCart = false;
+                 }
+
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+             }
+
+        }
+
+
     }
+
+
 }

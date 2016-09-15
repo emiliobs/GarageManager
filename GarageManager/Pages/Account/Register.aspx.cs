@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using GarageManager.Models;
 
 namespace GarageManager.Pages.Account
 {
@@ -20,7 +21,9 @@ namespace GarageManager.Pages.Account
 
         protected void btnIn_Click(object sender, EventArgs e)
         {
-            UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
+            var userStore =  new UserStore<IdentityUser>();
+
+            //UserStore<IdentityUser> userStore =
 
             userStore.Context.Database.Connection.ConnectionString = System.Configuration
                 .ConfigurationManager.ConnectionStrings["GarageConnectionString"].ConnectionString;
@@ -42,6 +45,22 @@ namespace GarageManager.Pages.Account
 
                     if (result.Succeeded)
                     {
+
+                        UserInformation info = new GarageManager.UserInformation
+                        {
+
+                            Address=txtAddress.Text,
+                            FirstName=txtFirstName.Text,
+                            Guid=user.Id,
+                            LastName=txtLastName.Text,
+                            PostalCode= Convert.ToInt32(txtPostalCode.Text)
+
+                        };
+
+                        UserInfoModel model = new Models.UserInfoModel();
+
+                        model.InstertUserInformation(info);
+
                         //Store user in db:
                         var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
 

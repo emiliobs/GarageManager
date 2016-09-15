@@ -155,6 +155,7 @@
     <Content Include="Pages\Management\ManageProducts.aspx" />
     <Content Include="Pages\Management\ManageProductTypes.aspx" />
     <Content Include="Pages\Products.aspx" />
+    <Content Include="Pages\ShoppingCart.aspx" />
     <Content Include="scripts\jquery-3.1.0.slim.min.map" />
     <Content Include="scripts\jquery-3.1.0.min.map" />
     <None Include="Web.Debug.config">
@@ -212,6 +213,17 @@
     <Content Include="Site1.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\UserInfoModel.cs" />
+    <Compile Include="Pages\ShoppingCart.aspx.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ShoppingCart.aspx.designer.cs">
+      <DependentUpon>ShoppingCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInformation.cs">
+      <DependentUpon>GarageModel.tt</DependentUpon>
+    </Compile>
     <Content Include="App_Code\Startup1.cs" />
     <Compile Include="Cart.cs">
       <DependentUpon>GarageModel.tt</DependentUpon>

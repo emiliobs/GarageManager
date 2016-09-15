@@ -28,5 +28,6 @@ namespace GarageManager
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductType> ProductTypes { get; set; }
+        public virtual DbSet<UserInformation> UserInformations { get; set; }
     }
 }
