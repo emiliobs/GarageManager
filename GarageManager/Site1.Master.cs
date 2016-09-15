@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using GarageManager.Models;
+using Microsoft.AspNet.Identity;
 
 namespace GarageManager
 {
@@ -15,13 +17,20 @@ namespace GarageManager
 
             if (user.IsAuthenticated)
             {
-                litStatus.Text = Context.User.Identity.Name;
+                //litStatus.Text = Context.User.Identity.Name;
 
                 lnkLogin.Visible = false;
                 lnkRegister.Visible = false;
 
                 lnkLogOut.Visible = true;
                 litStatus.Visible = true;
+
+                CartModel model = new Models.CartModel();
+
+                string userId = HttpContext.Current.User.Identity.GetUserId();
+
+                litStatus.Text = $"{Context.User.Identity.Name} {model.GetAmountOfOrders(userId)}";
+
             }
             else
             {
